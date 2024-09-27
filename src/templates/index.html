@@ -56,9 +56,36 @@
                                 <td>{{d.username}}</td>
                                 <td>{{d.name}}</td>
                                 <td>{{d.password}}</td>
-                                <td><button class="btn btn-primary btn-sm" id="">Edit</button></td>
-                                <td><a href="#" class="btn btn-danger btn-sm">Delete</a></td>
+                                <td><button class="btn btn-primary btn-sm" id="btn-edit{{d.id}}" data-bs-toggle="modal" data-bs-target="#modal{{d.id}}">Edit</button></td>
+                                <td><a href="{{url_for('delete', id=d.id)}}" class="btn btn-danger btn-sm">Delete</a></td>
                             </tr>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="modal{{d.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h1 class="modal-title fs-5" id="exampleModalLabel">{{d.username}}</h1>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{url_for('edit', id=d.id)}}" method="post">
+                                            <label>Username</label>
+                                            <input type="text" class="form-control mb-3" name="username" value="{{d.username}}">
+                                            <label>Name</label>
+                                            <input type="text" class="form-control mb-3" name="name" value="{{d.name}}">
+                                            <label>Password</label>
+                                            <input type="text" class="form-control mb-3" name="password" value="{{d.password}}">>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                      <button type="submit" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
                         {% endfor %}
 
                     </tbody>

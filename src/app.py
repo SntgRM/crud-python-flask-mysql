@@ -40,8 +40,8 @@ def addUser():
 @app.route('/delete/<string:id>')
 def delete(id):
     cursor = db.database.cursor()
-    sql = "DELETE FROM users WHERE id= %s)"
-    data = (id, )
+    sql = "DELETE FROM users WHERE id= %s"
+    data = (id,)
     cursor.execute(sql, data)
     db.database.commit()
     return redirect(url_for('home'))
@@ -54,7 +54,7 @@ def edit(id):
     
     if username and name and password:
         cursor = db.database.cursor()
-        sql = "UPDATE users SET username =%s,  name =%s, password =%s, WHERE id =%s"
+        sql = "UPDATE users SET username =%s,  name =%s, password =%s WHERE id =%s"
         data = (username, name, password, id)
         cursor.execute(sql, data)
         db.database.commit()
